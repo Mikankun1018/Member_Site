@@ -1,0 +1,38 @@
+{
+	"Mikankun": {
+		"name": "Mikankun",
+		"fileName": "Mikankun.png",
+		"good_at": "プログラミング",
+		"bgColor": "#FFDDDD"
+	},
+	"Hugu": {
+		"name": "Hugu",
+		"fileName": "Hugu.png",
+		"good_at": "絵",
+		"bgColor": "#DDFFDD"
+	},
+	"wakannnaidayo": {
+		"name": "Wakannnaidayo",
+		"fileName": "wakannnaidayo.png",
+		"good_at": "不明",
+		"bgColor": "#DDDDFF"
+	},
+	"blackfox": {
+		"name": "Blackfox",
+		"fileName": "blackfox.png",
+		"good_at": "プログラミング",
+		"bgColor": "#FFFFDD"
+	},
+	"H2O": {
+		"name": "H2O",
+		"fileName": "H2O.png",
+		"good_at": "プログラミング",
+		"bgColor": "#DDFFFF"
+	},
+	"Hatimitsu": {
+		"name": "Hatimitsu",
+		"fileName": "Hatimitsu.png",
+		"good_at": "不明",
+		"bgColor": "#FFFFDD"
+	}
+}
