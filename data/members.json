@@ -3,7 +3,8 @@
 		"name": "Mikankun",
 		"fileName": "Mikankun.png",
 		"good_at": "プログラミング",
-		"bgColor": "#FFDDDD"
+		"bgColor": "#FFDDDD",
+		"messageFile": "Mikankun.html"
 	},
 	"Hugu": {
 		"name": "Hugu",

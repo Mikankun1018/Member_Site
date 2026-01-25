@@ -1,31 +1,49 @@
+// 特にいうことなし
 var members = [];
+
+// ページ読み込み時の処理
 window.onload = function() { loadMemberData(); };
 
+// メンバー情報の読み取り
 async function loadMemberData() {
 	const res = await fetch('data/members.json');
 	const data = await res.json();
 
 	for (let key in data) {
-		const member = new Member(data[key]);
+		const member = await Member.new(data[key]);
 		members.push(member);
 	}
 
 	createClubInfo();
 }
 
+// メンバーの情報を収納するクラス
 class Member {
-	constructor(data) {
+	constructor(data, message) {
 		this.name = data.name;
 		this.fileName = data.fileName;
 		this.good_at = data.good_at;
 		this.bgColor = data.bgColor;
+		this.message = message;
+	}
+
+	static async new(data) {
+		var message = "ここにテキストを入力";
+		if (data.messageFile) {
+			const res = await fetch('data/message/' + data.messageFile);
+			message = await res.text();
+		}
+
+		return new Member(data, message);
 	}
 }
 
+// そ　の　ま　ん　ま
 function createElement(tagName) {
 	return document.createElement(tagName);
 }
 
+// メンバーのタイル作成 & タップ時の挙動
 function createClubInfo() {
 	const contentDiv = document.querySelector('.memberContent');
 	members.forEach(memb => {
@@ -41,10 +59,85 @@ function createClubInfo() {
 		mebName.textContent = '名前: ' + memb.name;
 		mebGoodAt.textContent = '得意分野: ' + memb.good_at;
 
-		mebImg.style.width = '100px';
-		mebImg.style.height = '100px';
+		mebImg.style.width = '125px';
+		mebImg.style.height = '125px';
 
-		mebDiv.onclick = function() {
+		mebName.style.fontSize = "20px";
+		mebGoodAt.style.fontSize = "18px";
+
+		mebDiv.onclick = function () {
+			var stopMembers = document.querySelectorAll('.member');
+			stopMembers.forEach(stopMeb => {
+				stopMeb.style.pointerEvents = 'none';
+			});
+			const blackBG = createElement('div');
+			blackBG.style.position = 'fixed';
+			blackBG.style.top = '0';
+			blackBG.style.left = '0';
+			blackBG.style.width = '100%';
+			blackBG.style.height = '100%';
+			blackBG.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+			blackBG.style.opacity = '0';
+			blackBG.style.transition = "opacity 0.25s ease-in-out";
+			blackBG.style.zIndex = '999';
+
+			const infoDiv = createElement('div');
+			infoDiv.style.position = 'absolute';
+			infoDiv.style.top = '100%';
+			infoDiv.style.left = '50%';
+			infoDiv.style.width = "60%";
+			infoDiv.style.height = "60%";
+			infoDiv.style.padding = '20px';
+			infoDiv.style.backgroundColor = memb.bgColor;
+			infoDiv.style.border = '2px solid #000';
+			infoDiv.style.borderRadius = '10px';
+			infoDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+			infoDiv.style.transform = 'translate(-50%, -50%)';
+			infoDiv.style.transition = "all 0.25s ease-in-out";
+			infoDiv.style.overflow = "hidden";
+			
+			const closeBtn = createElement('span');
+			closeBtn.innerHTML = '&times;';
+			closeBtn.style.position = 'absolute';
+			closeBtn.style.top = '5px';
+			closeBtn.style.right = '10px';
+			closeBtn.style.fontSize = '30px';
+			closeBtn.style.cursor = 'pointer';
+			
+			closeBtn.onclick = function () {
+				setTimeout(() => {
+					document.body.removeChild(blackBG);
+				}, 250);
+				stopMembers.forEach(stopMeb => {
+					stopMeb.style.pointerEvents = 'auto';
+				});
+				infoDiv.style.top = '100%';
+				blackBG.style.opacity = '0';
+			}
+
+			const infoTxt = createElement('div');
+			infoTxt.className = 'newScrollbar1';
+			infoTxt.style.whiteSpace = 'pre-line';
+			infoTxt.style.maxHeight = "100%";
+			infoTxt.style.overflowY = "auto";
+			infoTxt.style.paddingRight = "8px";
+			infoTxt.style.marginTop = "40px";
+			infoTxt.style.height = "calc(100% - 50px)";
+			infoTxt.style.overflowY = "auto";
+
+			infoTxt.style.boxSizing = "border-box";
+
+			infoTxt.innerHTML = memb.message;
+
+			document.body.appendChild(blackBG);
+			blackBG.appendChild(infoDiv);
+			infoDiv.appendChild(infoTxt);
+			infoDiv.appendChild(closeBtn);
+
+			requestAnimationFrame(() => {
+				blackBG.style.opacity = '1';
+				infoDiv.style.top = '50%';
+			});
 		}
 		
 		mebDiv.appendChild(mebImg);
@@ -53,4 +146,30 @@ function createClubInfo() {
 		
 		contentDiv.appendChild(mebDiv);
 	});
+}
+
+// メンバー紹介ページを連打するやつ向け
+var count = 0;
+function nothing(append) {
+	var defaultTXT = append.innerHTML;
+	var defaultEvent = append.onclick;
+	var txt = "それ以上も<br>これ以下もない";
+	if (count < 2)
+		txt = defaultTXT;
+	if (count == 2)
+		txt = "ほんとに<br>なんもないよ"
+	if (count > 4)
+		txt = "マジで<br>なんもないよ？"
+	if (count >= 10)
+		txt = "え？暇人？";
+	if (count >= 15)
+		txt = "ここ押した回数<br>" + count + "回目だよ？";
+
+	count++;
+	append.innerHTML = txt;
+	append.onclick = null;
+	setTimeout(() => {
+		append.innerHTML = defaultTXT;
+		append.onclick = defaultEvent;
+	}, 1000);
 }
