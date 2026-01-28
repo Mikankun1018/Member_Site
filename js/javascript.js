@@ -117,13 +117,15 @@ function createClubInfo() {
 
 			const infoTxt = createElement('div');
 			infoTxt.className = 'newScrollbar1';
-			infoTxt.style.whiteSpace = 'pre-line';
 			infoTxt.style.maxHeight = "100%";
+			infoTxt.style = "text-box-trim: both;";
 			infoTxt.style.overflowY = "auto";
 			infoTxt.style.paddingRight = "8px";
 			infoTxt.style.marginTop = "40px";
 			infoTxt.style.height = "calc(100% - 50px)";
-			infoTxt.style.overflowY = "auto";
+			infoTxt.style.overflowWrap = "break-word";
+			infoTxt.style.width = "100%";
+			infoTxt.style.overflowX = "hidden";
 
 			infoTxt.style.boxSizing = "border-box";
 
