@@ -10,7 +10,8 @@
 		"name": "Hugu",
 		"fileName": "Hugu.png",
 		"good_at": "絵",
-		"bgColor": "#DDFFDD"
+		"bgColor": "#DDFFDD",
+		"messageFile": "Hugu.html"
 	},
 	"wakannnaidayo": {
 		"name": "Wakannnaidayo",
