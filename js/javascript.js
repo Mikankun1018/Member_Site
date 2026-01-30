@@ -65,6 +65,16 @@ function createClubInfo() {
 		mebName.style.fontSize = "20px";
 		mebGoodAt.style.fontSize = "18px";
 
+		/*
+		const mouseMove = {
+			transform: `translate(${x}px, ${y}px)`,
+		};
+		mouse.animate(mouseMove, {
+			duration: 1000,
+			fill: "forwards",
+		});
+		*/
+
 		mebDiv.onclick = function () {
 			var stopMembers = document.querySelectorAll('.member');
 			stopMembers.forEach(stopMeb => {
@@ -85,7 +95,8 @@ function createClubInfo() {
 			infoDiv.style.position = 'absolute';
 			infoDiv.style.top = '100%';
 			infoDiv.style.left = '50%';
-			infoDiv.style.width = "60%";
+			infoDiv.style.width = "40%";
+			infoDiv.style.minWidth = "300px";
 			infoDiv.style.height = "60%";
 			infoDiv.style.padding = '20px';
 			infoDiv.style.backgroundColor = memb.bgColor;
