@@ -21,7 +21,9 @@ async function loadMemberData() {
 	createClubInfo();
 
 	var title = document.getElementById("title");
-	title.addEventListener("click", nothing(title));
+	title.addEventListener("click", function (e) {
+		nothing(title);
+	});
 	document.getElementById("notCredit").addEventListener("click", printDebug);
 }
 
@@ -173,9 +175,10 @@ function createClubInfo() {
 
 // メンバー紹介ページを連打するやつ向け
 var count = 0;
+var cantClick = false;
 function nothing(append) {
+	if (cantClick) return;
 	var defaultTXT = append.innerHTML;
-	var defaultEvent = append.onclick;
 	var txt = "それ以上も<br>これ以下もない";
 	if (count < 2)
 		txt = defaultTXT;
@@ -190,10 +193,10 @@ function nothing(append) {
 
 	count++;
 	append.innerHTML = txt;
-	append.onclick = null;
+	cantClick = true;
 	setTimeout(() => {
 		append.innerHTML = defaultTXT;
-		append.onclick = defaultEvent;
+		cantClick = false;
 	}, 1000);
 }
 
