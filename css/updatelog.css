@@ -1,0 +1,88 @@
+/* details 全体 */
+details {
+	overflow: hidden;
+	transition:
+		background-color 0.4s ease,
+		height 0.35s ease-in-out;
+	height: 42px; /* summary 分 */
+}
+
+/* 開いたときの details */
+details[open] {
+	height: 0px; /* 中身に合わせて調整 */
+	background-color: #bee1de;
+}
+
+/* summary */
+details summary {
+	cursor: pointer;
+	list-style: none;
+	user-select: none;
+	transition: background-color 0.3s ease;
+}
+
+details summary::-webkit-details-marker {
+	display: none;
+}
+
+/* ▶ アイコン */
+details summary::before {
+	content: "▶ ";
+	display: inline-block;
+	transition: transform 0.4s ease;
+}
+
+details[open] summary::before {
+	transform: rotate(90deg);
+}
+
+/* ===== 中身アニメーション ===== */
+.logBody {
+	font-size: 18px;
+	margin-top: 4px;
+	overflow: hidden;
+
+	max-height: 0;
+	opacity: 0;
+	transform: translateY(-10px);
+
+	transition:
+		max-height 0.6s ease,
+		opacity 0.35s ease,
+		transform 0.35s ease;
+}
+
+/* 開いたとき */
+details[open] .logBody {
+	max-height: 160px; /* スクロールしたい高さ */
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: 0.1s;
+}
+
+/* hover */
+details summary:hover {
+	background: #dbe9ff;
+}
+
+/* 既存スタイル */
+.logItem {
+	margin-bottom: 8px;
+}
+
+.logSummary {
+	font-weight: bold;
+	background: #e8f2ff;
+	padding: 6px;
+	border-radius: 4px;
+}
+
+.logTitle.add    { color: #2e7d32; }
+.logTitle.remove { color: #c62828; }
+.logTitle.change { color: #ef6c00; }
+.logTitle.fix    { color: #1565c0; }
+
+.logList {
+	margin-top: 2px;
+	padding-left: 18px;
+}
