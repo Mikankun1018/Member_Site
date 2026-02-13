@@ -29,7 +29,8 @@
 		"name": "H2O",
 		"fileName": "H2O.png",
 		"good_at": "プログラミング",
-		"bgColor": "#DDFFFF"
+		"bgColor": "#DDFFFF",
+		"messageFile": "H2O.txt"
 	},
 	"Hatimitsu": {
 		"name": "Hatimitsu",

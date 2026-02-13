@@ -2,6 +2,13 @@ export const VERSION = "0.0.4";
 
 export const UPDATE_DATA = [
 	{
+		version: "0.0.5",
+		date: "2026/02/13",
+		add: [
+			"H2O のプロフィールを追加しました。"
+		]
+	},
+	{
 		version: "0.0.4",
 		date: "2026/01/31",
 		add: [
