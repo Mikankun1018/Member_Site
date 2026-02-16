@@ -1,5 +1,3 @@
-export const VERSION = "0.0.5";
-
 export const UPDATE_DATA = [
 	{
 		version: "0.0.5",
