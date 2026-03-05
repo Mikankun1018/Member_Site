@@ -45,7 +45,7 @@ function createClubInfo() {
 	const isMobile = isSmartPhone();
 
 	const imgSize = isMobile ? 150 : 125;
-	const fontSize = isMobile ? 30 : 20;
+	const fontSize = isMobile ? 26 : 20;
 	const goodSize = isMobile ? 23 : 18;
 
 	members.forEach(memb => {

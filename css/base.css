@@ -61,11 +61,11 @@ body{
 
 	.memberContent {
 		width: 90%;
-		grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 	}
 
 	.member {
-		width: 225px;
+		width: 210px;
 	}
 }
 
