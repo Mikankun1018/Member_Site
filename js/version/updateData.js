@@ -1,7 +1,17 @@
 export const UPDATE_DATA = [
 	{
+		version: "0.0.52",
+		date: "2026/03/05",
+		add: [
+			"サイトをGithubにて公開"
+		]/*,
+		fix: [
+			"スマホ版の画像が小さすぎる問題を解決"
+		]*/
+	},
+	{
 		version: "0.0.51",
-		date: "2026/03/03",
+		date: "2026/03/05",
 		update: [
 			"サイトのJavaScriptを見直し、Fetchを改良しました。"
 		]

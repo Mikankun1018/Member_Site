@@ -1,89 +1,126 @@
 import { add, remove, createElement } from "../backend/elements.js";
-export async function createPopUp(bgColor, message, debugText) {
-	var stopMembers = document.querySelectorAll('.member');
-	stopMembers.forEach(stopMeb => {
-		stopMeb.style.pointerEvents = 'none';
-	});
-	const blackBG = createElement('div');
-	blackBG.style.position = 'fixed';
-	blackBG.style.top = '0';
-	blackBG.style.left = '0';
-	blackBG.style.width = '100%';
-	blackBG.style.height = '100%';
-	blackBG.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-	blackBG.style.opacity = '0';
-	blackBG.style.transition = "opacity 0.25s ease-in-out";
-	blackBG.style.zIndex = '999';
+import { isSmartPhone } from "./checker.js";
 
+export async function createPopUp(bgColor, message, debugText = false) {
+
+	const stopMembers = document.querySelectorAll('.member');
+	stopMembers.forEach(m => m.style.pointerEvents = 'none');
+
+	// 背景
+	const blackBG = createElement('div');
+	Object.assign(blackBG.style, {
+		position: 'fixed',
+		top: '0',
+		left: '0',
+		width: '100%',
+		height: '100%',
+		backgroundColor: 'rgba(0,0,0,0.5)',
+		opacity: '0',
+		transition: 'opacity 0.25s ease-in-out',
+		zIndex: '999'
+	});
+
+	// ポップアップ
 	const infoDiv = createElement('div');
-	infoDiv.style.position = 'absolute';
-	infoDiv.style.top = '100%';
-	infoDiv.style.left = '50%';
-	infoDiv.style.width = "40%";
-	infoDiv.style.minWidth = "300px";
-	infoDiv.style.height = "60%";
-	infoDiv.style.padding = '20px';
-	infoDiv.style.backgroundColor = bgColor;
-	infoDiv.style.border = '2px solid #000';
-	infoDiv.style.borderRadius = '10px';
-	infoDiv.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-	infoDiv.style.transform = 'translate(-50%, -50%)';
-	infoDiv.style.transition = "all 0.25s ease-in-out";
-	infoDiv.style.overflow = "hidden";
-			
-	const closeBtn = createElement('span');
-	closeBtn.innerHTML = '&times;';
-	closeBtn.style.position = 'absolute';
-	closeBtn.style.top = '5px';
-	closeBtn.style.right = '10px';
-	closeBtn.style.fontSize = '30px';
-	closeBtn.style.cursor = 'pointer';
-	
-	closeBtn.onclick = function () {
-		setTimeout(() => {
-			remove(document.body, blackBG);
-		}, 250);
-		stopMembers.forEach(stopMeb => {
-			stopMeb.style.pointerEvents = 'auto';
-		});
-		infoDiv.style.top = '100%';
-		blackBG.style.opacity = '0';
-	}
+	const isMobile = isSmartPhone();
+
+	Object.assign(infoDiv.style, {
+		position: 'absolute',
+		top: '100%',
+		left: '50%',
+		width: isMobile ? '85%' : '40%',
+		maxWidth: '800px',
+		height: isMobile ? '75%' : '60%',
+		padding: '20px',
+		backgroundColor: bgColor,
+		border: '2px solid #000',
+		borderRadius: '10px',
+		boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+		transform: 'translate(-50%, -50%)',
+		transition: 'all 0.25s ease-in-out',
+		overflow: 'hidden'
+	});
 
 	add(document.body, blackBG);
 	add(blackBG, infoDiv);
 
-	var findFile = false;
-	const filePos = `data/Message/${message}/Member.html`;
-	if (!debugText)
-		try {
-			const res = await fetch(filePos);
-			findFile = res.ok;
-		} catch (e) { findFile = false; }
-	
-	var infoTxt = (findFile ? document.createElement("iframe") : infoTxt = createElement('div'));
-	if (!findFile) infoTxt.innerHTML = (debugText ? message : "ファイルが見つかりませんでした。");
-	else infoTxt.src = filePos;
+	// 閉じるボタン
+	const closeBtn = createElement('span');
+	closeBtn.innerHTML = '&times;';
 
-	infoTxt.className = 'newScrollbar1';
-	infoTxt.style.maxHeight = "100%";
-	infoTxt.style.overflowY = "auto";
-	infoTxt.style.paddingRight = "8px";
-	infoTxt.style.marginTop = "40px";
-	infoTxt.style.height = "calc(100% - 50px)";
-	infoTxt.style.overflowWrap = "break-word";
-	infoTxt.style.width = "100%";
-	infoTxt.style.overflowX = "hidden";
+	Object.assign(closeBtn.style, {
+		position: 'absolute',
+		top: '5px',
+		right: '10px',
+		fontSize: isMobile ? '60px' : '30px',
+		cursor: 'pointer'
+	});
 
-	infoTxt.style.boxSizing = "border-box";
-	infoTxt.style.border = "none";
-	infoTxt.style.outline = "none";
+	closeBtn.onclick = () => {
+		infoDiv.style.top = '100%';
+		blackBG.style.opacity = '0';
+		setTimeout(() => {
+			remove(document.body, blackBG);
+			stopMembers.forEach(m => m.style.pointerEvents = 'auto');
+		}, 250);
+	};
+
+	add(infoDiv, closeBtn);
+	const infoTxt = createElement('div');
+
+	Object.assign(infoTxt.style, {
+		maxHeight: "100%",
+		overflowY: "auto",
+		paddingRight: "8px",
+		marginTop: "40px",
+		height: "calc(100% - 50px)",
+		overflowWrap: "break-word",
+		width: "100%",
+		overflowX: "hidden",
+		boxSizing: "border-box"
+	});
+
+	infoTxt.className = "newScrollbar1";
 
 	add(infoDiv, infoTxt);
-	add(infoDiv, closeBtn);
+
+	if (debugText) {
+		infoTxt.innerHTML = message;
+	} else {
+		const filePos = `data/Message/${message}/Member.html`;
+		try {
+			const res = await fetch(filePos, { cache: "no-store" });
+			if (!res.ok) throw new Error();
+			const html = await res.text();
+			infoTxt.innerHTML = html;
+			executeScripts(infoTxt, filePos);
+		} catch {
+			infoTxt.innerHTML = "ファイルが見つかりませんでした。";
+		}
+	}
 
 	requestAnimationFrame(() => {
 		blackBG.style.opacity = '1';
 		infoDiv.style.top = '50%';
+	});
+
+}
+
+function executeScripts(container, basePath) {
+	const scripts = container.querySelectorAll("script");
+	scripts.forEach(oldScript => {
+		const newScript = document.createElement("script");
+		if (oldScript.src) {
+			let src = oldScript.getAttribute("src");
+			if (!src.startsWith("http") && !src.startsWith("/")) {
+				const baseDir = basePath.substring(0, basePath.lastIndexOf("/") + 1);
+				src = baseDir + src;
+			}
+			newScript.src = src;
+			newScript.defer = true;
+		} else
+			newScript.textContent = oldScript.textContent;
+		document.body.appendChild(newScript);
+		oldScript.remove();
 	});
 }

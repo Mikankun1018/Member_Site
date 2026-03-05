@@ -1,6 +1,7 @@
 import { createElement } from "./backend/elements.js";
 import { printDebug } from "./version/printDebug.js";
 import { createPopUp } from "./backend/createPopUp.js";
+import { isSmartPhone } from "./backend/checker.js";
 
 // 特にいうことなし
 var members = [];
@@ -63,11 +64,15 @@ function createClubInfo() {
 		mebName.textContent = '名前: ' + memb.name;
 		mebGoodAt.textContent = '得意分野: ' + memb.good_at;
 
-		mebImg.style.width = '125px';
-		mebImg.style.height = '125px';
+		console.log(isSmartPhone());
+		var imgSize = (isSmartPhone() ? 150 : 125);
+		var fontSize = (isSmartPhone() ? 30 : 20);
+		var goodSize = (isSmartPhone() ? 23 : 18);
+		mebImg.style.width = imgSize + 'px';
+		mebImg.style.height = imgSize + 'px';
 
-		mebName.style.fontSize = "20px";
-		mebGoodAt.style.fontSize = "18px";
+		mebName.style.fontSize = fontSize + "px";
+		mebGoodAt.style.fontSize = goodSize + "px";
 
 		/*
 		const mouseMove = {
