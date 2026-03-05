@@ -45,8 +45,8 @@ function createClubInfo() {
 	const isMobile = isSmartPhone();
 
 	const imgSize = isMobile ? 150 : 125;
-	const fontSize = isMobile ? 26 : 20;
-	const goodSize = isMobile ? 23 : 18;
+	let fontSize = isMobile ? 26 : 20;
+	const goodSize = isMobile ? 19 : 18;
 
 	members.forEach(memb => {
 		const mebDiv = createElement("div");
@@ -62,6 +62,7 @@ function createClubInfo() {
 		mebImg.width = imgSize;
 		mebImg.height = imgSize;
 
+		if (isMobile && memb.name == "Wakannnaidayo") fontSize = 19;
 		mebName.textContent = memb.name;
 		mebGood.textContent = "得意分野";
 		mebGoodAt.textContent = memb.good_at;
@@ -74,9 +75,7 @@ function createClubInfo() {
 		mebDiv.addEventListener("click", () =>
 			createPopUp(memb.bgColor, memb.name)
 		);
-
 		mebDiv.append(mebImg, mebName, mebGood, mebGoodAt);
-
 		fragment.appendChild(mebDiv);
 	});
 

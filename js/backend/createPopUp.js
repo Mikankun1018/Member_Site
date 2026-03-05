@@ -28,7 +28,7 @@ export async function createPopUp(bgColor, message, debugText = false) {
 		position: 'absolute',
 		top: '100%',
 		left: '50%',
-		width: isMobile ? '85%' : '40%',
+		width: isMobile ? '80%' : '40%',
 		maxWidth: '800px',
 		height: isMobile ? '75%' : '60%',
 		padding: '20px',

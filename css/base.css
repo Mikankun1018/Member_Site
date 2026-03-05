@@ -18,7 +18,6 @@ body{
 	line-height: 1.5px;
 	background-color:aquamarine;
 }
-
 .base{
 	background-color: aqua;
 	border-radius: 20px;
@@ -59,13 +58,29 @@ body{
 		overflow-y: auto;
 	}
 
+	.credit {
+		position: static;
+		margin: 40px auto;
+		text-align: center;
+		width: 90%;
+		height: 54px;
+		font-size: 18px;
+		padding: auto;
+		line-height: 0.6;
+	}
+
+	.credit p{
+		margin-top: 2px;
+		padding: 2px 0;
+	}
+
 	.memberContent {
 		width: 90%;
-		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	}
 
 	.member {
-		width: 210px;
+		width: 150px;
 	}
 }
 
