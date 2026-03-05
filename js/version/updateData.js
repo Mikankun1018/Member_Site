@@ -1,5 +1,12 @@
 export const UPDATE_DATA = [
 	{
+		version: "0.0.61",
+		date: "2026/03/05",
+		change: [
+			"メンバーの読み込み時に、すべてのHTMLを読み込むように変更"
+		]
+	},
+	{
 		version: "0.0.6",
 		date: "2026/03/05",
 		add: [

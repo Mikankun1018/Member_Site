@@ -1,3 +1,4 @@
+import { cachePopUp, jsCache } from "./cache.js";
 import { add, remove, createElement } from "../backend/elements.js";
 import { isSmartPhone } from "./checker.js";
 
@@ -87,23 +88,18 @@ export async function createPopUp(bgColor, message, debugText = false) {
 	if (debugText) {
 		infoTxt.innerHTML = message;
 	} else {
-		const filePos = `data/Message/${message}/Member.html`;
-		try {
-			const res = await fetch(filePos, { cache: "no-store" });
-			if (!res.ok) throw new Error();
-			const html = await res.text();
+		const html = await cachePopUp(message);
+		if (html) {
 			infoTxt.innerHTML = html;
-			executeScripts(infoTxt, filePos);
-		} catch {
+			executeScripts(infoTxt, `data/Message/${message}/Member.html`);
+		} else
 			infoTxt.innerHTML = "ファイルが見つかりませんでした。";
-		}
 	}
 
 	requestAnimationFrame(() => {
 		blackBG.style.opacity = '1';
 		infoDiv.style.top = '50%';
 	});
-
 }
 
 function executeScripts(container, basePath) {
@@ -116,10 +112,11 @@ function executeScripts(container, basePath) {
 				const baseDir = basePath.substring(0, basePath.lastIndexOf("/") + 1);
 				src = baseDir + src;
 			}
-			newScript.src = src;
-			newScript.defer = true;
-		} else
-			newScript.textContent = oldScript.textContent;
+
+			if (jsCache.has(src))
+				newScript.textContent = jsCache.get(src);
+			else newScript.src = src;
+		} else newScript.textContent = oldScript.textContent;
 		document.body.appendChild(newScript);
 		oldScript.remove();
 	});

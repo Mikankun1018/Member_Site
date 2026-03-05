@@ -2,6 +2,7 @@ import { createElement } from "./backend/elements.js";
 import { printDebug } from "./version/printDebug.js";
 import { createPopUp } from "./backend/createPopUp.js";
 import { isSmartPhone } from "./backend/checker.js";
+import { cachePopUp } from "./backend/cache.js";
 
 let members = [];
 
@@ -14,7 +15,8 @@ async function loadMemberData() {
 
 		const data = await res.json();
 
-		members = Object.values(data).map(d => new Member(d));
+		members = await Promise.all(Object.values(data).map(d => Member.new(d)));
+		await Promise.all(members.map(m => cachePopUp(m.name)));
 
 		createClubInfo();
 
@@ -35,6 +37,10 @@ class Member {
 		this.fileName = data.fileName;
 		this.good_at = data.good_at;
 		this.bgColor = data.bgColor;
+	}
+
+	static async new(data) {
+		return new Member(data);
 	}
 }
 
