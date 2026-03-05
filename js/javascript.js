@@ -3,40 +3,32 @@ import { printDebug } from "./version/printDebug.js";
 import { createPopUp } from "./backend/createPopUp.js";
 import { isSmartPhone } from "./backend/checker.js";
 
-// 特にいうことなし
-var members = [];
+let members = [];
 
-// ページ読み込み時の処理
-window.onload = function () {
-	loadMemberData();
-};
+window.addEventListener("load", loadMemberData);
 
-// メンバー情報の読み取り
 async function loadMemberData() {
-	const res = await fetch('data/members.json');
-	const data = await res.json();
+	try {
+		const res = await fetch("data/members.json");
+		if (!res.ok) throw new Error("members.json 読み込み失敗");
 
-	/*
-	一つずつロードしていくタイプ
-	for (let key in data) {
-		const member = await Member.new(data[key]);
-		members.push(member);
-	}*/
+		const data = await res.json();
 
-	// 一気にすべてをロードするタイプ
-	const promises = Object.values(data).map(d => new Member(d));
-	members = await Promise.all(promises);
+		members = Object.values(data).map(d => new Member(d));
 
-	createClubInfo();
+		createClubInfo();
 
-	var title = document.getElementById("title");
-	title.addEventListener("click", function (e) {
-		nothing(title);
-	});
-	document.getElementById("notCredit").addEventListener("click", printDebug);
+		const title = document.getElementById("title");
+		title.addEventListener("click", () => nothing(title));
+
+		document.getElementById("notCredit").addEventListener("click", printDebug);
+
+	} catch (err) {
+		console.error(err);
+		createPopUp("#ffdddd", "メンバーデータの読み込みに失敗しました", true);
+	}
 }
 
-// メンバーの情報を収納するクラス
 class Member {
 	constructor(data) {
 		this.name = data.name;
@@ -46,77 +38,73 @@ class Member {
 	}
 }
 
-
-
-// メンバーのタイル作成 & タップ時の挙動
 function createClubInfo() {
-	const contentDiv = document.querySelector('.memberContent');
-	members.forEach(memb => {
-		const mebDiv = createElement('div');
-		const mebImg = createElement('img');
-		const mebName = createElement('p');
-		const mebGoodAt = createElement('p');
+	const contentDiv = document.querySelector(".memberContent");
+	const fragment = document.createDocumentFragment();
 
-		mebDiv.className = 'member canSelect';
+	const isMobile = isSmartPhone();
+
+	const imgSize = isMobile ? 150 : 125;
+	const fontSize = isMobile ? 30 : 20;
+	const goodSize = isMobile ? 23 : 18;
+
+	members.forEach(memb => {
+		const mebDiv = createElement("div");
+		const mebImg = createElement("img");
+		const mebName = createElement("p");
+		const mebGood = createElement("p");
+		const mebGoodAt = createElement("p");
+
+		mebDiv.className = "member canSelect";
 		mebDiv.style.backgroundColor = memb.bgColor;
 
-		mebImg.src = 'images/' + memb.fileName;
-		mebName.textContent = '名前: ' + memb.name;
-		mebGoodAt.textContent = '得意分野: ' + memb.good_at;
+		mebImg.src = `images/${memb.fileName}`;
+		mebImg.width = imgSize;
+		mebImg.height = imgSize;
 
-		console.log(isSmartPhone());
-		var imgSize = (isSmartPhone() ? 150 : 125);
-		var fontSize = (isSmartPhone() ? 30 : 20);
-		var goodSize = (isSmartPhone() ? 23 : 18);
-		mebImg.style.width = imgSize + 'px';
-		mebImg.style.height = imgSize + 'px';
+		mebName.textContent = memb.name;
+		mebGood.textContent = "得意分野";
+		mebGoodAt.textContent = memb.good_at;
 
-		mebName.style.fontSize = fontSize + "px";
-		mebGoodAt.style.fontSize = goodSize + "px";
+		mebName.style.fontSize = `${fontSize}px`;
+		mebGood.style.fontSize = `${goodSize}px`;
+		mebGoodAt.style.fontSize = `${goodSize}px`;
+		mebGoodAt.style.marginTop = `-${goodSize - 4}px`;
 
-		/*
-		const mouseMove = {
-			transform: `translate(${x}px, ${y}px)`,
-		};
-		mouse.animate(mouseMove, {
-			duration: 1000,
-			fill: "forwards",
-		});
-		*/
+		mebDiv.addEventListener("click", () =>
+			createPopUp(memb.bgColor, memb.name)
+		);
 
-		mebDiv.addEventListener("click", () => createPopUp(memb.bgColor, memb.name));
-		
-		mebDiv.appendChild(mebImg);
-		mebDiv.appendChild(mebName);
-		mebDiv.appendChild(mebGoodAt);
-		
-		contentDiv.appendChild(mebDiv);
+		mebDiv.append(mebImg, mebName, mebGood, mebGoodAt);
+
+		fragment.appendChild(mebDiv);
 	});
+
+	contentDiv.appendChild(fragment);
 }
 
-// メンバー紹介ページを連打するやつ向け
-var count = 0;
-var cantClick = false;
-function nothing(append) {
+let count = 0;
+let cantClick = false;
+
+function nothing(element) {
 	if (cantClick) return;
-	var defaultTXT = append.innerHTML;
-	var txt = "それ以上も<br>これ以下もない";
-	if (count < 2)
-		txt = defaultTXT;
-	if (count == 2)
-		txt = "ほんとに<br>なんもないよ"
-	if (count > 4)
-		txt = "マジで<br>なんもないよ？"
-	if (count >= 10)
-		txt = "え？暇人？";
-	if (count >= 15)
-		txt = "ここ押した回数<br>" + count + "回目だよ？";
+
+	const defaultTXT = element.innerHTML;
+
+	let txt = defaultTXT;
+
+	if (count === 2) txt = "ほんとに<br>なんもないよ";
+	else if (count > 4) txt = "マジで<br>なんもないよ？";
+	else if (count >= 10) txt = "え？暇人？";
+	else if (count >= 15) txt = `ここ押した回数<br>${count}回目だよ？`;
 
 	count++;
-	append.innerHTML = txt;
+
+	element.innerHTML = txt;
 	cantClick = true;
+
 	setTimeout(() => {
-		append.innerHTML = defaultTXT;
+		element.innerHTML = defaultTXT;
 		cantClick = false;
 	}, 1000);
 }
