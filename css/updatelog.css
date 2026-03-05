@@ -10,7 +10,7 @@ details {
 /* 開いたときの details */
 details[open] {
 	height: 0px; /* 中身に合わせて調整 */
-	background-color: #bee1de;
+	background-color: #ffffff;
 }
 
 /* summary */
@@ -77,10 +77,11 @@ details summary:hover {
 	border-radius: 4px;
 }
 
-.logTitle.add    { color: #2e7d32; }
-.logTitle.remove { color: #c62828; }
+.logTitle.add    { color: #2244ba; }
+.logTitle.remove { color: #db2019; }
+.logTitle.update { color: #33ab41; }
 .logTitle.change { color: #ef6c00; }
-.logTitle.fix    { color: #1565c0; }
+.logTitle.fix    { color: #42ab91; }
 
 .logList {
 	margin-top: 2px;

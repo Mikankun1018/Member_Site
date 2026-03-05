@@ -1,5 +1,12 @@
 export const UPDATE_DATA = [
 	{
+		version: "0.0.51",
+		date: "2026/03/03",
+		update: [
+			"サイトのJavaScriptを見直し、Fetchを改良しました。"
+		]
+	},
+	{
 		version: "0.0.5",
 		date: "2026/02/13",
 		add: [
@@ -82,6 +89,7 @@ export const GET_CHANGELOG = function (version, open = false) {
 			<div class="logBody">
 				${addBlock("追加", "add", data.add)}
 				${addBlock("削除", "remove", data.remove)}
+				${addBlock("更新", "update", data.update)}
 				${addBlock("変更", "change", data.change)}
 				${addBlock("修正", "fix", data.fix)}
 			</div>

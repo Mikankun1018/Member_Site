@@ -3,15 +3,13 @@
 		"name": "Mikankun",
 		"fileName": "Mikankun.png",
 		"good_at": "プログラミング",
-		"bgColor": "#FFDDDD",
-		"messageFile": "Mikankun.html"
+		"bgColor": "#FFDDDD"
 	},
 	"Hugu": {
 		"name": "Hugu",
 		"fileName": "Hugu.png",
 		"good_at": "絵",
-		"bgColor": "#DDFFDD",
-		"messageFile": "Hugu.html"
+		"bgColor": "#DDFFDD"
 	},
 	"wakannnaidayo": {
 		"name": "Wakannnaidayo",
@@ -29,8 +27,7 @@
 		"name": "H2O",
 		"fileName": "H2O.png",
 		"good_at": "プログラミング",
-		"bgColor": "#DDFFFF",
-		"messageFile": "H2O.txt"
+		"bgColor": "#DDFFFF"
 	},
 	"Hatimitsu": {
 		"name": "Hatimitsu",
