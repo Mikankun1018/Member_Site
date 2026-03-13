@@ -1,4 +1,4 @@
-import { createElement } from "./backend/elements.js";
+import { getElementById, createElement } from "./backend/elements.js";
 import { printDebug } from "./version/printDebug.js";
 import { createPopUp } from "./backend/createPopUp.js";
 import { isSmartPhone } from "./backend/checker.js";
@@ -20,10 +20,10 @@ async function loadMemberData() {
 
 		createClubInfo();
 
-		const title = document.getElementById("title");
+		const title = getElementById("title");
 		title.addEventListener("click", () => nothing(title));
 
-		document.getElementById("notCredit").addEventListener("click", printDebug);
+		getElementById("notCredit").addEventListener("click", printDebug);
 
 	} catch (err) {
 		console.error(err);
@@ -64,7 +64,7 @@ function createClubInfo() {
 		mebDiv.className = "member canSelect";
 		mebDiv.style.backgroundColor = memb.bgColor;
 
-		mebImg.src = `images/${memb.fileName}`;
+		mebImg.src = `images/icon/${memb.fileName}`;
 		mebImg.width = imgSize;
 		mebImg.height = imgSize;
 

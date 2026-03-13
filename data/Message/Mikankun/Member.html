@@ -1,9 +1,5 @@
 <head>
-	<script>
-		function click() {
-			console.log("NI");
-		}
-	</script>
+	<script type="module" src="playmygame.js"></script>
 </head>
 <style>
 	.text{
@@ -26,6 +22,7 @@
 		position: absolute;
 		right: 1%;
 		bottom: 0%;
+		user-select: none;
 	}
 </style>
 <div class="group">
@@ -39,6 +36,6 @@
 			<li>嫌いな科目: 国語</li>
 		</ul>
 		<p>今の所これぐらいのことを書いておきます。(2026/01/31)</p>
-		<p class="chase" onclick="click()">...</p>
+		<p class="chase" id="playmygame" onclick="playmygame.click()">...</p>
 	</div>
 </div>

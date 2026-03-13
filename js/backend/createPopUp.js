@@ -3,12 +3,12 @@ import { add, remove, createElement } from "../backend/elements.js";
 import { isSmartPhone } from "./checker.js";
 
 export async function createPopUp(bgColor, message, debugText = false) {
-
 	const stopMembers = document.querySelectorAll('.member');
 	stopMembers.forEach(m => m.style.pointerEvents = 'none');
 
 	// 背景
 	const blackBG = createElement('div');
+	blackBG.id = "bg";
 	Object.assign(blackBG.style, {
 		position: 'fixed',
 		top: '0',
@@ -23,6 +23,7 @@ export async function createPopUp(bgColor, message, debugText = false) {
 
 	// ポップアップ
 	const infoDiv = createElement('div');
+	infoDiv.id = "infoDiv";
 	const isMobile = isSmartPhone();
 
 	Object.assign(infoDiv.style, {
@@ -104,20 +105,30 @@ export async function createPopUp(bgColor, message, debugText = false) {
 
 function executeScripts(container, basePath) {
 	const scripts = container.querySelectorAll("script");
+	const baseURL = new URL(basePath, location.href);
+	const baseDir = baseURL.href.substring(0, baseURL.href.lastIndexOf("/") + 1);
+
 	scripts.forEach(oldScript => {
 		const newScript = document.createElement("script");
-		if (oldScript.src) {
-			let src = oldScript.getAttribute("src");
-			if (!src.startsWith("http") && !src.startsWith("/")) {
-				const baseDir = basePath.substring(0, basePath.lastIndexOf("/") + 1);
-				src = baseDir + src;
-			}
+		const type = oldScript.getAttribute("type");
+		if (type) newScript.type = type;
 
-			if (jsCache.has(src))
+		const srcAttr = oldScript.getAttribute("src");
+		if (srcAttr) {
+			let src = srcAttr;
+
+			if (!src.startsWith("http") && !src.startsWith("/"))
+				src = new URL(src, baseDir).href;
+
+			if (type === "module") newScript.src = src;
+			else if (jsCache.has(src) && jsCache.get(src) !== null)
 				newScript.textContent = jsCache.get(src);
 			else newScript.src = src;
 		} else newScript.textContent = oldScript.textContent;
-		document.body.appendChild(newScript);
+
+		newScript.async = false;
+
+		container.appendChild(newScript);
 		oldScript.remove();
 	});
 }

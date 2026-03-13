@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<TextureAtlas imagePath="boyfriend-by-nikog266.png">
+  <SubTexture name="idle0000" x="0" y="0" width="53" height="51"/>
+  <SubTexture name="up0000" x="54" y="0" width="53" height="51"/>
+  <SubTexture name="up0001" x="108" y="0" width="53" height="51"/>
+  <SubTexture name="crouch0000" x="162" y="0" width="53" height="51"/>
+  <SubTexture name="crouch0001" x="216" y="0" width="53" height="51"/>
+  <SubTexture name="bored0000" x="0" y="61" width="53" height="51"/>
+  <SubTexture name="bored0001" x="54" y="61" width="53" height="51"/>
+  <SubTexture name="bored0002" x="108" y="61" width="53" height="51"/>
+  <SubTexture name="walk0000" x="0" y="122" width="53" height="51"/>
+  <SubTexture name="walk0001" x="54" y="122" width="53" height="51"/>
+  <SubTexture name="walk0002" x="108" y="122" width="53" height="51"/>
+  <SubTexture name="walk0003" x="162" y="122" width="53" height="51"/>
+  <SubTexture name="walk0004" x="216" y="122" width="53" height="51"/>
+  <SubTexture name="walk0005" x="270" y="122" width="53" height="51"/>
+  <SubTexture name="run0000" x="0" y="183" width="53" height="51"/>
+  <SubTexture name="run0001" x="54" y="183" width="53" height="51"/>
+  <SubTexture name="run0002" x="108" y="183" width="53" height="51"/>
+  <SubTexture name="run0003" x="162" y="183" width="53" height="51"/>
+  <SubTexture name="roll0000" x="0" y="244" width="53" height="51"/>
+  <SubTexture name="roll0001" x="54" y="244" width="53" height="51"/>
+  <SubTexture name="roll0002" x="108" y="244" width="53" height="51"/>
+  <SubTexture name="roll0003" x="162" y="244" width="53" height="51"/>
+  <SubTexture name="ball0000" x="216" y="244" width="53" height="51"/>
+  <SubTexture name="hurt0000" x="0" y="305" width="53" height="51"/>
+  <SubTexture name="hurt0001" x="54" y="305" width="53" height="51"/>
+  <SubTexture name="gasp0000" x="108" y="305" width="53" height="51"/>
+  <SubTexture name="death0000" x="162" y="305" width="53" height="51"/>
+  <SubTexture name="drown0000" x="216" y="305" width="53" height="51"/>
+  <SubTexture name="continue0000" x="270" y="305" width="54" height="56"/>
+  <SubTexture name="continue0001" x="324" y="305" width="54" height="56"/>
+  <SubTexture name="continue0002" x="378" y="305" width="54" height="56"/>
+  <SubTexture name="continue0003" x="432" y="305" width="54" height="56"/>
+  <SubTexture name="hang roll0000" x="0" y="366" width="52" height="51"/> 
+  <SubTexture name="hang roll0001" x="53" y="366" width="52" height="51"/>
+  <SubTexture name="spin0000" x="106" y="366" width="52" height="51"/>
+  <SubTexture name="spin0001" x="159" y="366" width="52" height="51"/>
+  <SubTexture name="spin0002" x="212" y="366" width="52" height="51"/>
+  <SubTexture name="spin0003" x="265" y="366" width="52" height="51"/>
+  <SubTexture name="spin0004" x="318" y="366" width="52" height="51"/>
+  <SubTexture name="spring 10000" x="0" y="427" width="52" height="51"/>
+  <SubTexture name="cdspring0000" x="53" y="427" width="52" height="51"/>
+  <SubTexture name="cdspring0001" x="106" y="427" width="52" height="51"/>
+  <SubTexture name="cdspring0002" x="159" y="427" width="52" height="51"/>
+  <SubTexture name="fall0000" x="216" y="427" width="53" height="51"/>
+  <SubTexture name="skid0000" x="0" y="488" width="52" height="51"/>
+  <SubTexture name="balance0000" x="53" y="488" width="53" height="51"/>
+  <SubTexture name="balance0001" x="107" y="488" width="53" height="51"/>
+  <SubTexture name="push0000" x="0" y="549" width="52" height="51"/>
+  <SubTexture name="push0001" x="53" y="549" width="52" height="51"/>
+  <SubTexture name="push0002" x="106" y="549" width="52" height="51"/>
+  <SubTexture name="push0003" x="159" y="549" width="52" height="51"/>
+  <SubTexture name="ending(small)0000" x="0" y="610" width="52" height="51"/>
+  <SubTexture name="ending(small)0001" x="53" y="610" width="52" height="51"/>
+  <SubTexture name="ending(small)0002" x="106" y="610" width="52" height="51"/>
+  <SubTexture name="ending(small)0003" x="159" y="610" width="52" height="51"/>
+  <SubTexture name="ending(small)0004" x="212" y="610" width="52" height="51"/>
+  <SubTexture name="ending(small)0005" x="265" y="610" width="52" height="51"/>
+  <SubTexture name="ending(big)0000" x="0" y="671" width="162" height="136"/>
+  <SubTexture name="ending(big)0001" x="163" y="671" width="162" height="136"/>
+  <SubTexture name="icon0001" x="327" y="671" width="30" height="16"/>
+</TextureAtlas>
