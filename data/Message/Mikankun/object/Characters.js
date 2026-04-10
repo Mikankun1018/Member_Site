@@ -68,12 +68,28 @@ export async function createCharacter(charName) {
 		char.addByPrefix("ending(small)", "ending(small)", fps, false);
 		char.addByPrefix("ending(big)", "ending(big)", fps, false);
 	
-		char.play("jump", 12);
+		char.play("jump", true);
 		char.offsetY = 4;
 
 		char.updateFunc = () => {
 			char.onGround = true;
 		}
+	} else if (charName == "silver") {
+		char = new Player("images/Mikankun/Silver The Hedgehog");
+		await char.loadAtlas();
+		var fps = 12;
+		char.addByPrefix("idle", "idle", fps, true);
+		char.addByPrefix("jump", "jump 1", fps, false);
+		char.addByPrefix("fall", "fall", fps, false);
+		char.addByPrefix("walk", "walk 1", fps, false);
+		char.addByPrefix("run", "run", fps, true);
+		char.addByPrefix("death", "dead 1", fps, false);
+		char.addByPrefix("push", "walk psych", 6, false);
+		char.addOffset("fall", 0, -7);
+
+		char.play("idle", true);
+
+		char.updateFunc = () => char.onGround = true;
 	}
 
 	return char;

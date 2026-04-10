@@ -1,6 +1,55 @@
 <?xml version='1.0' encoding='utf-8'?>
 <TextureAtlas imagePath="Silver The Hedgehog.png">
-	<SubTexture name="sprite_1" x="0" y="0" width="33" height="48" />
+	<SubTexture name="idle0000" x="0" y="0" width="33" height="48" />
+	<SubTexture name="jump 10000" x="85" y="250" width="32" height="45" frameY="3" />
+	<SubTexture name="jump 20000" x="124" y="241" width="34" height="51" />
+	<SubTexture name="jump 20001" x="165" y="238" width="33" height="53" />
+	<SubTexture name="fall0000" x="258" y="239" width="37" height="56" frameY="-8" />
+	<SubTexture name="fall0001" x="304" y="243" width="36" height="56" frameY="-8" />
+  
+	<SubTexture name="walk 10000" x="1" y="124" width="29" height="49" />
+	<SubTexture name="walk 10001" x="35" y="125" width="30" height="49" />
+	<SubTexture name="walk 10002" x="70" y="125" width="33" height="48" />
+	<SubTexture name="walk 10003" x="105" y="126" width="29" height="47" />
+	<SubTexture name="walk 10004" x="139" y="124" width="29" height="49" />
+	<SubTexture name="walk 10005" x="173" y="125" width="30" height="49" />
+	<SubTexture name="walk 10006" x="210" y="125" width="33" height="47" />
+	<SubTexture name="walk 10007" x="247" y="126" width="31" height="47" />
+	<SubTexture name="walk 20000" x="291" y="124" width="30" height="49" />
+	<SubTexture name="walk 20001" x="335" y="125" width="30" height="49" />
+	<SubTexture name="walk 20002" x="380" y="125" width="33" height="48" />
+	<SubTexture name="walk 20003" x="425" y="126" width="30" height="47" />
+	<SubTexture name="walk 20004" x="469" y="124" width="30" height="49" />
+	<SubTexture name="walk 20005" x="513" y="125" width="30" height="49" />
+	<SubTexture name="walk 20006" x="560" y="125" width="33" height="47" />
+	<SubTexture name="walk 20007" x="607" y="126" width="31" height="47" />
+	<SubTexture name="drop0000" x="652" y="138" width="39" height="37" />
+	<SubTexture name="drop0001" x="696" y="138" width="39" height="37" />
+	<SubTexture name="dead 10000" x="739" y="125" width="35" height="51" />
+	<SubTexture name="dead 20000" x="778" y="135" width="33" height="41" />
+	
+	<SubTexture name="walk psych0000" x="1" y="310" width="39" height="49" />
+	<SubTexture name="walk psych0001" x="45" y="311" width="39" height="49" />
+	<SubTexture name="walk psych0002" x="90" y="311" width="39" height="48" />
+	<SubTexture name="walk psych0003" x="135" y="312" width="39" height="47" />
+	<SubTexture name="walk psych0004" x="179" y="310" width="39" height="49" />
+	<SubTexture name="walk psych0005" x="223" y="311" width="39" height="49" />
+	<SubTexture name="walk psych0006" x="270" y="311" width="39" height="47" />
+	<SubTexture name="walk psych0007" x="317" y="312" width="39" height="47" />
+	<SubTexture name="run0000" x="374" y="313" width="29" height="48" />
+	<SubTexture name="run0001" x="410" y="314" width="33" height="47" />
+	<SubTexture name="run0002" x="450" y="315" width="42" height="46" />
+	<SubTexture name="run0003" x="503" y="316" width="34" height="45" />
+	<SubTexture name="run0004" x="549" y="314" width="29" height="47" />
+	<SubTexture name="run0005" x="587" y="313" width="35" height="48" />
+	<SubTexture name="run0006" x="631" y="315" width="42" height="46" />
+	<SubTexture name="run0007" x="683" y="316" width="34" height="45" />
+
+	<SubTexture name="andAmy0000" x="733" y="313" width="36" height="48" />
+	<SubTexture name="standing0000" x="777" y="313" width="33" height="48" />
+	<SubTexture name="notHand0000" x="817" y="313" width="33" height="48" />
+	<SubTexture name="notHand0001" x="854" y="313" width="34" height="48" />
+
 	<SubTexture name="sprite_2" x="36" y="0" width="34" height="48" />
 	<SubTexture name="sprite_3" x="73" y="0" width="35" height="48" />
 	<SubTexture name="sprite_4" x="111" y="0" width="35" height="48" />
@@ -50,27 +99,6 @@
 	<SubTexture name="sprite_47" x="540" y="68" width="39" height="46" />
 	<SubTexture name="sprite_48" x="732" y="68" width="34" height="46" />
 
-	<SubTexture name="sprite_49" x="1" y="124" width="29" height="49" />
-	<SubTexture name="sprite_53" x="35" y="125" width="30" height="49" />
-	<SubTexture name="sprite_54" x="70" y="125" width="33" height="48" />
-	<SubTexture name="sprite_50" x="139" y="124" width="29" height="49" />
-	<SubTexture name="sprite_51" x="291" y="124" width="30" height="49" />
-	<SubTexture name="sprite_52" x="469" y="124" width="30" height="49" />
-	<SubTexture name="sprite_55" x="173" y="125" width="30" height="49" />
-	<SubTexture name="sprite_56" x="210" y="125" width="33" height="47" />
-	<SubTexture name="sprite_57" x="335" y="125" width="30" height="49" />
-	<SubTexture name="sprite_58" x="380" y="125" width="33" height="48" />
-	<SubTexture name="sprite_59" x="513" y="125" width="30" height="49" />
-	<SubTexture name="sprite_60" x="560" y="125" width="33" height="47" />
-	<SubTexture name="sprite_61" x="739" y="125" width="35" height="51" />
-	<SubTexture name="sprite_62" x="105" y="126" width="29" height="47" />
-	<SubTexture name="sprite_63" x="247" y="126" width="31" height="47" />
-	<SubTexture name="sprite_64" x="425" y="126" width="30" height="47" />
-	<SubTexture name="sprite_65" x="607" y="126" width="31" height="47" />
-	<SubTexture name="sprite_66" x="778" y="135" width="33" height="41" />
-	<SubTexture name="sprite_67" x="652" y="138" width="39" height="37" />
-	<SubTexture name="sprite_68" x="696" y="138" width="39" height="37" />
-
 	<SubTexture name="sprite_69" x="264" y="182" width="44" height="48" />
 	<SubTexture name="sprite_70" x="316" y="182" width="38" height="48" />
 	<SubTexture name="sprite_71" x="363" y="182" width="42" height="48" />
@@ -92,11 +120,7 @@
 
 	<SubTexture name="sprite_87" x="872" y="204" width="53" height="27" />
 	<SubTexture name="sprite_88" x="208" y="237" width="39" height="54" />
-	<SubTexture name="sprite_89" x="165" y="238" width="33" height="53" />
-	<SubTexture name="sprite_90" x="258" y="239" width="37" height="56" />
 	<SubTexture name="sprite_91" x="7" y="241" width="32" height="47" />
-	<SubTexture name="sprite_92" x="124" y="241" width="34" height="51" />
-	<SubTexture name="sprite_93" x="304" y="243" width="36" height="56" />
 	<SubTexture name="sprite_94" x="353" y="246" width="46" height="50" />
 	<SubTexture name="sprite_95" x="516" y="246" width="40" height="54" />
 	<SubTexture name="sprite_96" x="561" y="246" width="40" height="54" />
@@ -110,28 +134,6 @@
 	<SubTexture name="sprite_104" x="472" y="247" width="33" height="53" />
 	<SubTexture name="sprite_105" x="886" y="247" width="37" height="54" />
 	<SubTexture name="sprite_106" x="43" y="248" width="31" height="40" />
-	<SubTexture name="sprite_107" x="85" y="250" width="32" height="45" />
-
-	<SubTexture name="sprite_131" x="1" y="310" width="39" height="49" />
-	<SubTexture name="sprite_132" x="179" y="310" width="39" height="49" />
-	<SubTexture name="sprite_133" x="45" y="311" width="39" height="49" />
-	<SubTexture name="sprite_134" x="90" y="311" width="39" height="48" />
-	<SubTexture name="sprite_135" x="223" y="311" width="39" height="49" />
-	<SubTexture name="sprite_136" x="270" y="311" width="39" height="47" />
-	<SubTexture name="sprite_137" x="135" y="312" width="39" height="47" />
-	<SubTexture name="sprite_138" x="317" y="312" width="39" height="47" />
-	<SubTexture name="sprite_139" x="374" y="313" width="29" height="48" />
-	<SubTexture name="sprite_140" x="587" y="313" width="35" height="48" />
-	<SubTexture name="sprite_141" x="733" y="313" width="36" height="48" />
-	<SubTexture name="sprite_142" x="777" y="313" width="33" height="48" />
-	<SubTexture name="sprite_143" x="817" y="313" width="33" height="48" />
-	<SubTexture name="sprite_144" x="854" y="313" width="34" height="48" />
-	<SubTexture name="sprite_145" x="410" y="314" width="33" height="47" />
-	<SubTexture name="sprite_146" x="549" y="314" width="29" height="47" />
-	<SubTexture name="sprite_147" x="450" y="315" width="42" height="46" />
-	<SubTexture name="sprite_148" x="631" y="315" width="42" height="46" />
-	<SubTexture name="sprite_149" x="503" y="316" width="34" height="45" />
-	<SubTexture name="sprite_150" x="683" y="316" width="34" height="45" />
 
 	<SubTexture name="sprite_151" x="898" y="350" width="25" height="11" />
 	<SubTexture name="sprite_153" x="1" y="370" width="39" height="49" />

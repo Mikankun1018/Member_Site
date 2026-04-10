@@ -58,6 +58,8 @@ async function createPlayState() {
 
 	await createChaser();
 	createObject(0, 0, 200, 100);
+	createObject(300, 0, 200, 100);
+	createObject(500, 0, 400, 100);
 	boyfriend.setPosition(50, GAME.height - 200);
 }
 
@@ -107,7 +109,7 @@ function createObject(x, y, width, height, color) {
 
 async function createChaser() {
 	// add(boyfriend = await createCharacter("boyfriend"));
-	add(boyfriend = await createCharacter("blaze"))
+	add(boyfriend = await createCharacter("silver"))
 }
 
 function update(time) {

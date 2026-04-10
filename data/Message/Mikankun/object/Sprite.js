@@ -51,6 +51,7 @@ export class Sprite extends BasicSprite {
 		this.image.src = `${this.path}.png`;
 
 		this.frames = {};
+		this.offset = {};
 
 		this.animations = {};
 		this.currentAnim = null;
@@ -111,8 +112,8 @@ export class Sprite extends BasicSprite {
 
 			pattern.push(frame);
 
-			maxW = Math.max(maxW, frame.width);
-			maxH = Math.max(maxH, frame.height);
+			maxW = Math.max(maxW, frame.width + frame.frameX);
+			maxH = Math.max(maxH, frame.height + frame.frameY);
 		}
 
 		if (pattern.length > 0 && lastName !== "")
@@ -158,6 +159,10 @@ export class Sprite extends BasicSprite {
 			fps: fps,
 			loop: loop
 		};
+	}
+	
+	addOffset(animName, x = 0, y = 0) {
+		this.offset[animName] = { x: x, y: y };
 	}
 
 	curAnim = "";
@@ -232,7 +237,7 @@ export class Sprite extends BasicSprite {
 			return;
 
 		const frame = this.currentAnim.frames[this.frameIndex];
-
+		const off = this.offset[this.curAnim] ?? { x: 0, y: 0 };
 
 		ctx.save();
 		if (this.flipX) {
@@ -243,8 +248,8 @@ export class Sprite extends BasicSprite {
 				frame.y,
 				frame.width,
 				frame.height,
-				-(this.x + this.width * this.scale.x),
-				this.y,
+				-(this.x + off.x + this.width * this.scale.x),
+				this.y + off.y,
 				frame.width * this.scale.x,
 				frame.height * this.scale.y
 			);
@@ -255,8 +260,8 @@ export class Sprite extends BasicSprite {
 				frame.y,
 				frame.width,
 				frame.height,
-				this.x,
-				this.y,
+				this.x + off.x,
+				this.y + off.y,
 				frame.width * this.scale.x,
 				frame.height * this.scale.y
 			);
