@@ -76,7 +76,7 @@ body{
 
 	.memberContent {
 		width: 90%;
-		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
 	}
 
 	.member {

@@ -89,7 +89,10 @@ export async function createCharacter(charName) {
 
 		char.play("idle", true);
 
-		char.updateFunc = () => char.onGround = true;
+		char.updateFunc = () => {
+			if (char.onGround)
+				char.velocity.x *= char.friction;
+		}
 	}
 
 	return char;

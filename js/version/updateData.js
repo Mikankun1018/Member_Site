@@ -1,5 +1,12 @@
 export const UPDATE_DATA = [
 	{
+		version: "0.0.62",
+		date: "2026/09/01",
+		fix: [
+			"画像読み込み時、スマホの機種によっては一つしか表示されない問題を修正"
+		]
+	},
+	{
 		version: "0.0.61",
 		date: "2026/03/05",
 		change: [
